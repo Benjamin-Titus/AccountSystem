@@ -12,6 +12,12 @@
     <artifactId>AccountSystemLogic</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>az.ac.nwu.account.system</groupId>
+            <artifactId>AccountSystemDomain</artifactId>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
