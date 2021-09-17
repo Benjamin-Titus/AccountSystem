@@ -32,6 +32,11 @@
                 <version>4.3.30.RELEASE</version>
                 <scope>compile</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
