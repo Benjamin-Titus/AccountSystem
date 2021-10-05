@@ -46,6 +46,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>9.0.21</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
