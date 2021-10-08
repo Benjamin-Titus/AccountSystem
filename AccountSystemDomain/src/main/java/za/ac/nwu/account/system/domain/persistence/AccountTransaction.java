@@ -2,20 +2,21 @@ package za.ac.nwu.account.system.domain.persistence;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Setter
-@Getter
 @EqualsAndHashCode
 @ToString
 @Table(name="Account_Type",schema="VITRSA_SANDBOX")
 public class AccountTransaction implements Serializable {
     @Id
-    @SequenceGenerator(name="VIT_RSA_GENERIC_SEQ",sequenceNmae="VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ",allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="VIT_RSA_GENERIC_SEQ")
+    @SequenceGenerator(name="VIT_RSA_GENERIC_SEQ",sequenceName="VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ",allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="VIT_RSA_GENERIC_SEQ")
     @Column(name= "TX.ID")
     private Long transactionID;
 

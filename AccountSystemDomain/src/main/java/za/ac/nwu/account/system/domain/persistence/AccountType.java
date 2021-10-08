@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="ACCOUNT_TYPE",schema="VITRSA_SANDBOX")
@@ -24,21 +25,30 @@ public class AccountType implements Serializable {
    // @JsonDeserialize(using=LocalDateDeserialize.class)
     @Column(name="CREATION_NAME")
     private LocalDate creationDate;
+    private Set<AccountTransaction> accountTransactions;
 
-    public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate, Set<AccountTransaction> accountTransactions) {
         this.accountTypeId = accountTypeId;
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
+        AccountTransactions = accountTransactions;
+    }
+    private Set<AccountTransaction>AccountTransactions;
+
+    public AccountType(Set<AccountTransaction> accountTransactions) {
+        AccountTransactions = accountTransactions;
     }
 
-    public AccountType() {
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationTime) {
     }
+
     @OneToMany(targetEntity=AcoountTransaction.class,fetch=FetchType.LAZY,mappedBy="accountType",orphanRemoval=true,cascade=CascadeType.PERSIST)
     public Set<AccountTransaction>getAccountTransactions(){
-        return accountTransactions;
+
+        return accountTransanction;
     }
-    public void setAccountTransactions(Set<AccountTransaction>accountTransactions){
+    public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
         this.accountTransactions=accountTransactions;
     }
 
