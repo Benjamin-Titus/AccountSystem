@@ -2,6 +2,7 @@ package za.ac.nwu.account.system.domain.persistence;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
+import za.ac.nwu.account.system.domain.persistence.AccountType;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -14,6 +15,8 @@ import java.util.Objects;
 @ToString
 @Table(name="Account_Type",schema="VITRSA_SANDBOX")
 public class AccountTransaction implements Serializable {
+    private AccountType accountType;
+
     @Id
     @SequenceGenerator(name="VIT_RSA_GENERIC_SEQ",sequenceName="VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ",allocationSize=1)
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="VIT_RSA_GENERIC_SEQ")
@@ -21,7 +24,7 @@ public class AccountTransaction implements Serializable {
     private Long transactionID;
 
     @Column(name="ACCOUNT_TYPE_ID")
-    private Long accountTypeId;
+    private AccountType accountTypeId;
 
     @Column(name="Member_ID")
     private Long memberId;
@@ -32,15 +35,18 @@ public class AccountTransaction implements Serializable {
     @Column(name="TX_DATE")
     private LocalDate transactionDate;
 
-    public AccountTransaction(Long transactionID, Long accountTypeId, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionID, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionID = transactionID;
-        this.accountTypeId = accountTypeId;
+        this.accountType = accountType;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
     }
-
-    public AccountTransaction() {
+    public AccountTransaction(AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
+        this.accountType = accountType;
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
     }
 
     public Long getTransactionID() {
@@ -52,12 +58,12 @@ public class AccountTransaction implements Serializable {
     }
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ACCOUNT_TYPE_ID")
-    public Long getAccountTypeId() {
-        return accountTypeId;
+    public AccountType getAccountType() {
+        return accountType;
     }
 
-    public void setAccountTypeId(Long accountTypeId) {
-        this.accountTypeId = accountTypeId;
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     public Long getMemberId() {
@@ -89,12 +95,12 @@ public class AccountTransaction implements Serializable {
         if (this == o) return true;
         if (!(o instanceof AccountTransaction)) return false;
         AccountTransaction that = (AccountTransaction) o;
-        return getTransactionID().equals(that.getTransactionID()) && getAccountTypeId().equals(that.getAccountTypeId()) && getMemberId().equals(that.getMemberId()) && getAmount().equals(that.getAmount()) && getTransactionDate().equals(that.getTransactionDate());
+        return getTransactionID().equals(that.getTransactionID()) && getAccountType().equals(that.getAccountType()) && getMemberId().equals(that.getMemberId()) && getAmount().equals(that.getAmount()) && getTransactionDate().equals(that.getTransactionDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTransactionID(), getAccountTypeId(), getMemberId(), getAmount(), getTransactionDate());
+        return Objects.hash(getTransactionID(), getAccountType(), getMemberId(), getAmount(), getTransactionDate());
     }
 
     @Override

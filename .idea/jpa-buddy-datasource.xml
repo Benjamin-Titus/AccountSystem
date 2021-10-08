@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="e83545c5-0b69-4660-8745-d5ef6c77a112" name="ACCOUNTSERVICEDB" url="jdbc:sqlserver://DESKTOP-9RRC9IL;databaseName=ACCOUNTSERVICEDB" driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+    </data-sources>
+  </component>
+</project>
